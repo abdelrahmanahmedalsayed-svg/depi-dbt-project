@@ -40,6 +40,28 @@ models:
         data_tests:
           - not_null
 
+  - name: dim_date
+    description: "Date dimension copied from stg.DIMDate"
+    columns:
+      - name: date_key
+        description: "Primary key of the date dimension"
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_gender
+    description: "Gender dimension copied from stg.DIMgender"
+    columns:
+      - name: gender_id
+        description: "Primary key of the gender dimension"
+        data_tests:
+          - unique
+          - not_null
+      - name: gender
+        description: "Gender name"
+        data_tests:
+          - not_null
+
   - name: fact_salary
     description: "Salary fact table, one row per employee, linked to the dimensions"
     columns:
