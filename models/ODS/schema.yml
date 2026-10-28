@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: ODS
+    description: "Operational Data Store: raw employee data loaded from the DEPI_data seed with no transformations."
+    columns:
+      - name: ID
+        description: "Employee identifier from the source file"
+        data_tests:
+          - not_null
+      - name: salary
+        description: "Employee salary as loaded from the source"
+        data_tests:
+          - not_null

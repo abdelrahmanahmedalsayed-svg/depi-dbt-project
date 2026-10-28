@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: DIMgender
+    description: "Staging dimension for gender"
+    columns:
+      - name: gender_id
+        description: "Primary key for gender"
+        data_tests:
+          - unique
+          - not_null
+      - name: gender
+        description: "Gender"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["Male", "Female"]
+
+  - name: DIMDate
+    description: "Staging dimension for date"
+    columns:
+      - name: date_key
+        description: "Primary key for date"
+        data_tests:
+          - unique
+          - not_null
+
+  - name: DIMcountry
+    description: "Staging dimension for country"
+    columns:
+      - name: country_id
+        description: "Primary key for country"
+        data_tests:
+          - unique
+          - not_null
+      - name: country
+        description: "Country name"
+        data_tests:
+          - not_null
+
+  - name: DIMdepartment
+    description: "Staging dimension for department"
+    columns:
+      - name: department_id
+        description: "Primary key for department"
+        data_tests:
+          - unique
+          - not_null
+      - name: department
+        description: "Department name"
+        data_tests:
+          - not_null
+
+  - name: DIMemployee
+    description: "Staging dimension for employee"
+    columns:
+      - name: employee_id
+        description: "Surrogate key for employee"
+        data_tests:
+          - unique
+          - not_null
+      - name: email
+        description: "Employee email"
+        data_tests:
+          - not_null
+
+  - name: OBT
+    description: "One Big Table: employee data cleaned, with a formatted full name (via capitalize_name macro). Incremental model."
+    columns:
+      - name: employee_id
+        description: "Unique employee identifier"
+        data_tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: "First and last name, capitalized"
+      - name: salary
+        description: "Employee salary"
+        data_tests:
+          - not_null

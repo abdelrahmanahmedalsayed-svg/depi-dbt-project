@@ -1,0 +1,20 @@
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Credentials
+profiles.yml
+.env
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

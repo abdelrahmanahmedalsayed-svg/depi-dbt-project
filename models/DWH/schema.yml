@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: dim_country
+    description: "Country dimension of the warehouse"
+    columns:
+      - name: country_key
+        description: "Primary key"
+        data_tests:
+          - unique
+          - not_null
+      - name: country_name
+        description: "Country name"
+        data_tests:
+          - not_null
+
+  - name: dim_department
+    description: "Department dimension of the warehouse"
+    columns:
+      - name: department_key
+        description: "Primary key"
+        data_tests:
+          - unique
+          - not_null
+      - name: department_name
+        description: "Department name"
+        data_tests:
+          - not_null
+
+  - name: dim_employee
+    description: "Employee dimension of the warehouse"
+    columns:
+      - name: employee_key
+        description: "Primary key"
+        data_tests:
+          - unique
+          - not_null
+      - name: employee_id
+        description: "Business key of the employee"
+        data_tests:
+          - not_null
+
+  - name: fact_salary
+    description: "Salary fact table, one row per employee, linked to the dimensions"
+    columns:
+      - name: employee_key
+        description: "FK to dim_employee"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_employee')
+                field: employee_key
+      - name: department_key
+        description: "FK to dim_department"
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_department')
+                field: department_key
+      - name: country_key
+        description: "FK to dim_country"
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_country')
+                field: country_key
+      - name: birth_date_key
+        description: "FK to the date dimension (DIMDate)"
+      - name: salary
+        description: "Employee salary"
+        data_tests:
+          - not_null
