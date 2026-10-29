@@ -13,8 +13,8 @@ DEPI_data (seed) → ods.ODS → stg.* (dimensions + OBT) → dwh.* (star schema
 | Seed | dbo | `DEPI_data` |
 | ODS | ods | `ODS` |
 | Staging | stg | `DIMcountry`, `DIMDate`, `DIMdepartment`, `DIMemployee`, `DIMgender`, `OBT` (incremental) |
-| DWH | dwh | `dim_country`, `dim_department`, `dim_employee`, `fact_salary` |
-
+| DWH | dwh | `dim_country`, `dim_department`, `dim_employee`, `dim_date`, `dim_gender`, `fact_salary` |
+|
 ## Tech Stack
 
 - dbt Core 1.12.6
@@ -35,7 +35,7 @@ DEPI_data (seed) → ods.ODS → stg.* (dimensions + OBT) → dwh.* (star schema
 
 ## Build Results
 
-`dbt build`: **PASS=47, WARN=0, ERROR=0** (1 seed, 10 models, 35 tests)
+`dbt build`: **PASS=54, WARN=0, ERROR=0** (1 seed, 13 models, 40 tests)
 
 ## How to Run
 
